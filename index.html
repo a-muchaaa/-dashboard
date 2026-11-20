@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 고용동향 및 비정규직 노동시장 심층 대시보드</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="dashboard-header">
+    <div class="header-top">
+      <div class="header-title-group">
+        <h1>
+          📊 2026 노동시장 고용동향 대시보드
+          <span class="badge">통계청 10월 공표 공식통계</span>
+        </h1>
+        <p class="header-subtitle">
+          2026년 8월 기준 경제활동인구조사 근로형태별 부가조사 결과 심층 분석 리포트 (2026. 10. 21. 공표)
+        </p>
+      </div>
+      <div class="header-actions">
+        <a href="../2026년_10월_경제활동인구조사_부가조사_통계표_대시보드용.xlsx" class="btn btn-white" download>
+          📥 원천 엑셀 다운로드 (.xlsx)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Tab Bar -->
+  <nav class="tabs-bar">
+    <button class="tab-btn active" data-tab="tab-overview">📌 종합 요약 (Overview)</button>
+    <button class="tab-btn" data-tab="tab-trends">📈 고용 형태별 추이 (2019~2026)</button>
+    <button class="tab-btn" data-tab="tab-demographics">👥 연령·산업·직업별 구조</button>
+    <button class="tab-btn" data-tab="tab-conditions">⚖️ 정규직 vs 비정규직 격차</button>
+    <button class="tab-btn" data-tab="tab-regional">🗺️ 전국 17개 시도별 동향</button>
+    <button class="tab-btn" data-tab="tab-database">📋 원천 DB 조회 & 필터</button>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+
+    <!-- ============================================================== -->
+    <!-- TAB 1: OVERVIEW -->
+    <!-- ============================================================== -->
+    <div id="tab-overview" class="tab-pane active">
+      
+      <!-- Key Insights Banner -->
+      <div class="insight-box warning">
+        <div class="insight-title">
+          ⚠️ 2026년 8월 노동시장 핵심 진단: 비정규직 비중 38.5% 역대 최고 수준 경신
+        </div>
+        <div class="insight-content">
+          임금근로자는 2,252.6만 명으로 전년 대비 11.3만 명 증가했으나, <strong>증가 인원의 91.2%(10.3만 명)가 비정규직에 집중</strong>되었습니다. 정규직은 1만 명 증가에 그쳤으며, 비정규직 비중은 38.5%로 전년 대비 0.3%p 상승했습니다. 특히 <strong>60세 이상 고령층(+13.5만 명)</strong>과 <strong>보건복지업(+11.2만 명)</strong>, <strong>시간제 근로자(+15.2만 명)</strong>가 증가세를 견인했습니다.
+        </div>
+      </div>
+
+      <!-- Top 4 Primary KPI Cards -->
+      <div>
+        <div class="section-title">
+          <span>핵심 고용 지표 (Key Metrics)</span>
+          <span class="section-desc">2026년 8월 기준 (전년동월대비 비교)</span>
+        </div>
+        <div class="kpi-grid">
+          <!-- Card 1 -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>전체 임금근로자</span>
+              <span>👥 총계</span>
+            </div>
+            <div class="kpi-value">
+              22,526 <span class="kpi-unit">천명</span>
+            </div>
+            <div class="kpi-footer">
+              <span class="delta-badge up-good">▲ 113천명 (+0.5%)</span>
+              <span class="kpi-subtext">전년 22,413천명</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span>정규직 근로자 (61.5%)</span>
+              <span>🏢 안정고용</span>
+            </div>
+            <div class="kpi-value">
+              13,855 <span class="kpi-unit">천명</span>
+            </div>
+            <div class="kpi-footer">
+              <span class="delta-badge down">▲ 10천명 (+0.1%)</span>
+              <span class="kpi-subtext">비중 0.3%p 하락</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="kpi-card danger">
+            <div class="kpi-header">
+              <span>비정규직 근로자 (38.5%)</span>
+              <span>⚠️ 역대최고</span>
+            </div>
+            <div class="kpi-value" style="color:#dc2626;">
+              8,671 <span class="kpi-unit">천명</span>
+            </div>
+            <div class="kpi-footer">
+              <span class="delta-badge up">▲ 103천명 (+0.3%p)</span>
+              <span class="kpi-subtext">전년 8,568천명</span>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="kpi-card purple">
+            <div class="kpi-header">
+              <span>비정규직 월평균 임금</span>
+              <span>💰 최근3개월</span>
+            </div>
+            <div class="kpi-value" style="color:#7c3aed;">
+              211.2 <span class="kpi-unit">만원</span>
+            </div>
+            <div class="kpi-footer">
+              <span class="delta-badge up-good">▲ 2.4만원 (+1.1%)</span>
+              <span class="kpi-subtext">정규직 405.2만 (격차 194만)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub 4 Type KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-header"><span>한시적 근로자</span><span>69.6%</span></div>
+          <div class="kpi-value">6,035 <span class="kpi-unit">천명</span></div>
+          <div class="kpi-footer">
+            <span class="delta-badge up">▲ 187천명 (+1.4%p)</span>
+            <span class="kpi-subtext">기간제 5,497천 / 비기간제 538천</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-header"><span>시간제 근로자</span><span>50.5%</span></div>
+          <div class="kpi-value">4,382 <span class="kpi-unit">천명</span></div>
+          <div class="kpi-footer">
+            <span class="delta-badge up">▲ 152천명 (+1.1%p)</span>
+            <span class="kpi-subtext">주당 18.6시간 / 시급제 중심</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-header"><span>비전형 근로자</span><span>20.6%</span></div>
+          <div class="kpi-value">1,786 <span class="kpi-unit">천명</span></div>
+          <div class="kpi-footer">
+            <span class="delta-badge down">▼ 48천명 (-0.3%p)</span>
+            <span class="kpi-subtext">용역 476천 / 일일 431천 / 특고 566천</span>
+          </div>
+        </div>
+        <div class="kpi-card success">
+          <div class="kpi-header"><span>비정규직 평균 근속기간</span><span>⏳ 근속</span></div>
+          <div class="kpi-value">36 <span class="kpi-unit">개월 (3년)</span></div>
+          <div class="kpi-footer">
+            <span class="delta-badge up-good">▲ 1개월 증가</span>
+            <span class="kpi-subtext">정규직 108개월(9년)의 1/3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row 1 -->
+      <div class="charts-grid-2">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <div class="chart-title">정규직 vs 비정규직 규모 및 비중 추이 (2019~2026)</div>
+              <div class="chart-subtitle">정규직/비정규직 근로자 수(천명)와 비정규직 비율(%) 추세</div>
+            </div>
+          </div>
+          <div class="chart-body">
+            <canvas id="chartOverviewTrend"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <div class="chart-title">비정규직 근로형태 3대 유형 구조 (2026년 8월)</div>
+              <div class="chart-subtitle">한시적, 시간제, 비전형 근로자 중복 포함 규모 (단위: 천명)</div>
+            </div>
+          </div>
+          <div class="chart-body">
+            <canvas id="chartNonRegTypes"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- TAB 2: TRENDS -->
+    <!-- ============================================================== -->
+    <div id="tab-trends" class="tab-pane">
+      <div class="section-title">
+        <span>고용 형태별 8개년 시계열 분석 (통계표 1)</span>
+        <div class="filter-bar">
+          <label style="font-size:13px; font-weight:600;">성별 필터:</label>
+          <select id="table1GenderFilter" class="filter-select">
+            <option value="total">전체 (Total)</option>
+            <option value="male">남자 (Male)</option>
+            <option value="female">여자 (Female)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="charts-grid-2">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <div class="chart-title">비정규직 세부 유형별 추이 (2019~2026)</div>
+              <div class="chart-subtitle">한시적(기간제 포함), 시간제, 비전형 근로자 추세</div>
+            </div>
+          </div>
+          <div class="chart-body">
+            <canvas id="chartSubTypesTrend"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <div class="chart-title">성별 비정규직 비중(%) 추이 비교</div>
+              <div class="chart-subtitle">여성 비정규직 비중(47.0%)은 남성(31.0%) 대비 16.0%p 높은 수준 유지</div>
+            </div>
+          </div>
+          <div class="chart-body">
+            <canvas id="chartGenderTrend"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table 1 Dynamic Table -->
+      <div class="table-card">
+        <div class="table-header">
+          <span style="font-weight:700;">📋 임금근로자의 근로형태별 규모 (8월 기준 시계열)</span>
+          <span style="font-size:12px; color:#64748b;">(단위: 천명, %, %p)</span>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th class="text-right">2019</th>
+                <th class="text-right">2020</th>
+                <th class="text-right">2021</th>
+                <th class="text-right">2022</th>
+                <th class="text-right">2023</th>
+                <th class="text-right">2024</th>
+                <th class="text-right">2025</th>
+                <th class="text-right">2026</th>
+                <th class="text-right">전년대비 증감</th>
+              </tr>
+            </thead>
+            <tbody id="table1Body">
+              <!-- Rendered via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- TAB 3: DEMOGRAPHICS & SECTORS -->
+    <!-- ============================================================== -->
+    <div id="tab-demographics" class="tab-pane">
+      <div class="section-title">
+        <span>비정규직 인구학적 및 산업·직업 구조 (통계표 2)</span>
+        <span class="section-desc">고령층 편중 및 서비스·보건복지업 쏠림 분석</span>
+      </div>
+
+      <div class="insight-box info">
+        <div class="insight-title">💡 구조적 특징 관찰</div>
+        <div class="insight-content">
+          • <strong>고령층 집중도 심화:</strong> 60세 이상 비정규직 비중이 2019년 25.9%에서 2026년 <strong>36.7%로 10.8%p 급등</strong>하며 단일 연령층 최다 기록.<br>
+          • <strong>보건사회복지업의 비대화:</strong> 비정규직 5명 중 1명(21.5%, 186.7만 명)이 보건·사회복지업에 종사하며, 숙박음식업(9.9%), 사업지원(9.8%) 순으로 높음.<br>
+          • <strong>단순노무 종사자 다수:</strong> 직업별로는 단순노무(31.7%)와 서비스·판매(27.1%)가 합쳐서 전체 비정규직의 약 59%를 차지함.
+        </div>
+      </div>
+
+      <div class="charts-grid-2">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <div class="chart-title">연령계층별 비정규직 비중 변화 (2019 vs 2026)</div>
+              <div class="chart-subtitle">청년층(20대) 감소 및 60세 이상 고령층 비중 급증</div>
+            </div>
+          </div>
+          <div class="chart-body">
+            <canvas id="chartAgeCompare"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <div class="chart-title">2026년 주요 산업별 비정규직 비중 (%)</div>
+              <div class="chart-subtitle">보건복지업 21.5%, 숙박음식업 9.9%, 사업시설 9.8% 등</div>
+            </div>
+          </div>
+          <div class="chart-body">
+            <canvas id="chartIndustry"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- TAB 4: LABOR CONDITIONS & GAP -->
+    <!-- ============================================================== -->
+    <div id="tab-conditions" class="tab-pane">
+      <div class="section-title">
+        <span>근로조건 및 정규직 vs 비정규직 격차 (통계표 3)</span>
+        <span class="section-desc">임금, 근속기간, 사회보험 및 복지 수혜율 다각도 비교</span>
+      </div>
+
+      <div class="charts-grid-2">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <div class="chart-title">월평균 임금 추이 및 격차 (2019~2026)</div>
+              <div class="chart-subtitle">2026년: 정규직 405.2만 원 vs 비정규직 211.2만 원 (격차 194.0만 원)</div>
+            </div>
+          </div>
+          <div class="chart-body">
+            <canvas id="chartWagesTrend"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <div>
+              <div class="chart-title">2026년 사회보험 및 근로복지 수혜율 비교 (%)</div>
+              <div class="chart-subtitle">국민연금(정규 88.6% vs 비정규 36.5%), 퇴직급여(96.2% vs 45.7%) 등</div>
+            </div>
+          </div>
+          <div class="chart-body">
+            <canvas id="chartConditionsGap"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparative Summary Table -->
+      <div class="table-card">
+        <div class="table-header">
+          <span style="font-weight:700;">📊 2026년 8월 기준 정규직 vs 비정규직 근로조건 종합 비교표</span>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>근로조건 지표</th>
+                <th>단위</th>
+                <th class="text-right">임금근로자 평균</th>
+                <th class="text-right">정규직 (A)</th>
+                <th class="text-right">비정규직 (B)</th>
+                <th class="text-right">격차 (A - B)</th>
+                <th>주요 특이사항</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>평균 근속기간</strong></td>
+                <td>개월</td>
+                <td class="text-right">80</td>
+                <td class="text-right">108 (9.0년)</td>
+                <td class="text-right font-bold text-red-600">36 (3.0년)</td>
+                <td class="text-right font-bold">+72개월</td>
+                <td>정규직이 비정규직 대비 정확히 3.0배 긴 근속기간 보유</td>
+              </tr>
+              <tr>
+                <td><strong>주당 평균 취업시간</strong></td>
+                <td>시간</td>
+                <td class="text-right">36.2</td>
+                <td class="text-right">40.4</td>
+                <td class="text-right font-bold text-red-600">29.5</td>
+                <td class="text-right font-bold">+10.9시간</td>
+                <td>시간제 근로자(18.6시간) 비중 확대로 비정규직 평균 시간 단축</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>월평균 임금</strong></td>
+                <td>만원</td>
+                <td class="text-right">330.5</td>
+                <td class="text-right">405.2</td>
+                <td class="text-right font-bold text-red-600">211.2</td>
+                <td class="text-right font-bold">+194.0만원</td>
+                <td>비정규직 임금은 정규직의 52.1% 수준 (시간제 제외시 309.8만원)</td>
+              </tr>
+              <tr>
+                <td><strong>국민연금 가입률</strong></td>
+                <td>%</td>
+                <td class="text-right">68.5%</td>
+                <td class="text-right">88.6%</td>
+                <td class="text-right font-bold text-red-600">36.5%</td>
+                <td class="text-right font-bold">+52.1%p</td>
+                <td>비정규직의 국민연금 직장 가입 사각지대 지속</td>
+              </tr>
+              <tr>
+                <td><strong>건강보험 가입률</strong></td>
+                <td>%</td>
+                <td class="text-right">79.3%</td>
+                <td class="text-right">95.7%</td>
+                <td class="text-right font-bold text-red-600">53.0%</td>
+                <td class="text-right font-bold">+42.7%p</td>
+                <td>정규직 대비 절반 수준의 직장가입률</td>
+              </tr>
+              <tr>
+                <td><strong>고용보험 가입률</strong></td>
+                <td>%</td>
+                <td class="text-right">77.0%</td>
+                <td class="text-right">93.0%</td>
+                <td class="text-right font-bold text-red-600">54.0%</td>
+                <td class="text-right font-bold">+39.0%p</td>
+                <td>고용안전망 취약성 노출</td>
+              </tr>
+              <tr>
+                <td><strong>퇴직급여 수혜율</strong></td>
+                <td>%</td>
+                <td class="text-right">76.7%</td>
+                <td class="text-right">96.2%</td>
+                <td class="text-right font-bold text-red-600">45.7%</td>
+                <td class="text-right font-bold">+50.5%p</td>
+                <td>1년 미만 단기 계약자 다수로 비정규직 절반 이상 수혜 불가</td>
+              </tr>
+              <tr>
+                <td><strong>상여금 수혜율</strong></td>
+                <td>%</td>
+                <td class="text-right">70.1%</td>
+                <td class="text-right">89.5%</td>
+                <td class="text-right font-bold text-red-600">39.2%</td>
+                <td class="text-right font-bold">+50.3%p</td>
+                <td>상여금 혜택 격차 심각</td>
+              </tr>
+              <tr>
+                <td><strong>시간외수당 수혜율</strong></td>
+                <td>%</td>
+                <td class="text-right">55.0%</td>
+                <td class="text-right">69.9%</td>
+                <td class="text-right font-bold text-red-600">31.1%</td>
+                <td class="text-right font-bold">+38.8%p</td>
+                <td>포괄임금 및 시간제 적용으로 시간외수당 수혜 저조</td>
+              </tr>
+              <tr>
+                <td><strong>유급휴가(휴일) 수혜율</strong></td>
+                <td>%</td>
+                <td class="text-right">69.1%</td>
+                <td class="text-right">88.3%</td>
+                <td class="text-right font-bold text-red-600">38.4%</td>
+                <td class="text-right font-bold">+49.9%p</td>
+                <td>연차유급휴가 등 모성보호 및 휴식권 보장 취약</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- TAB 5: REGIONAL ANALYSIS -->
+    <!-- ============================================================== -->
+    <div id="tab-regional" class="tab-pane">
+      <div class="section-title">
+        <span>전국 17개 시도별 비정규직 규모 및 비중 분석 (통계표 4)</span>
+        <div class="filter-bar">
+          <input type="text" id="table4Search" class="search-input" placeholder="시도 명칭 검색 (예: 부산, 경남, 서울)">
+        </div>
+      </div>
+
+      <!-- Regional Insight Alert -->
+      <div class="insight-box warning">
+        <div class="insight-title">📍 경상권(동남권) 노동시장 경고 지표</div>
+        <div class="insight-content">
+          • <strong>부산(41.7%)</strong>: 비정규직 근로자 57.8만 명으로 전국 평균(38.5%) 대비 <strong>+3.2%p 초과</strong>하며 7대 특·광역시 중 최상위권 기록.<br>
+          • <strong>울산(40.2%)</strong>: 전년 36.2%에서 40.2%로 <strong>+4.0%p 폭등</strong>하여 비정규직 비중 40%선 돌파.<br>
+          • <strong>경남(35.7%)</strong>: 정규직이 2.1만 명 증가하며 비정규직 비중이 -1.9%p 하락하여 전국 대비 상대적 고용 안정성 개선 흐름.
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <div>
+            <div class="chart-title">2026년 8월 시도별 비정규직 비중(%) 비교 랭킹</div>
+            <div class="chart-subtitle">빨강: 부산·울산(고비율 지역), 초록: 경남, 파랑: 기타 시도 (기준선: 전국 평균 38.5%)</div>
+          </div>
+        </div>
+        <div class="chart-body" style="min-height:340px;">
+          <canvas id="chartRegionalRanking"></canvas>
+        </div>
+      </div>
+
+      <!-- Table 4 Full Data Table -->
+      <div class="table-card">
+        <div class="table-header">
+          <span style="font-weight:700;">📋 17개 시도별 비정규직 근로자 규모 상세 현황</span>
+          <span style="font-size:12px; color:#64748b;">(단위: 천명, %, 전년동월대비)</span>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th rowspan="2">시도 구분</th>
+                <th colspan="4" class="text-center" style="background:#f1f5f9;">2025년 8월</th>
+                <th colspan="4" class="text-center" style="background:#e2e8f0;">2026년 8월</th>
+                <th colspan="4" class="text-center" style="background:#fee2e2;">전년대비 증감 (2026 - 2025)</th>
+              </tr>
+              <tr>
+                <th class="text-right">임금근로자</th>
+                <th class="text-right">정규직</th>
+                <th class="text-right">비정규직</th>
+                <th class="text-right">비중(%)</th>
+                <th class="text-right">임금근로자</th>
+                <th class="text-right">정규직</th>
+                <th class="text-right">비정규직</th>
+                <th class="text-right">비중(%)</th>
+                <th class="text-right">근로자증감</th>
+                <th class="text-right">정규직증감</th>
+                <th class="text-right">비정규증감</th>
+                <th class="text-right">비중증감(%p)</th>
+              </tr>
+            </thead>
+            <tbody id="table4Body">
+              <!-- Rendered via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- TAB 6: DATA EXPLORER -->
+    <!-- ============================================================== -->
+    <div id="tab-database" class="tab-pane">
+      <div class="section-title">
+        <span>통합 정규화 데이터베이스 (Tidy Data Explorer)</span>
+        <div class="filter-bar">
+          <select id="dbCatFilter" class="filter-select">
+            <option value="all">전체 통계표 보기 (All Tables)</option>
+            <option value="통계표1">통계표 1: 근로형태별 규모</option>
+            <option value="통계표2">통계표 2: 연령·산업·직업별</option>
+            <option value="통계표3">통계표 3: 근로조건별 특성</option>
+            <option value="통계표4">통계표 4: 시도별 규모</option>
+          </select>
+          <input type="text" id="dbSearchInput" class="search-input" placeholder="키워드 검색 (항목, 연도, 단위 등)...">
+          <button id="btnExportCsv" class="btn btn-primary">
+            📥 필터 데이터 CSV 내보내기
+          </button>
+        </div>
+      </div>
+
+      <div class="insight-box info">
+        <div class="insight-title">💡 BI 대시보드 및 피벗테이블 연동 팁</div>
+        <div class="insight-content">
+          이 데이터셋은 엑셀 피벗테이블(Pivot Table), Power BI, Tableau, 파이썬(Pandas) 등의 분석 툴에서 1초 만에 피벗 및 다차원 슬라이서(Slicer)를 구성할 수 있도록 <strong>정규화된 2차원 테이블(Tidy Data)</strong> 형식으로 정렬되어 있습니다. 상단의 'CSV 내보내기' 버튼으로 저장 후 바로 활용하실 수 있습니다.
+        </div>
+      </div>
+
+      <div class="table-card">
+        <div class="table-header">
+          <span style="font-weight:700;">전체 정규화 데이터 레코드</span>
+          <span id="dbTotalCount" style="font-size:12px; font-weight:700; color:#2563eb;">총 800건</span>
+        </div>
+        <div class="table-responsive" style="max-height: 540px; overflow-y: auto;">
+          <table class="data-table">
+            <thead>
+              <tr style="position: sticky; top: 0; z-index: 10;">
+                <th class="text-center">ID</th>
+                <th class="text-center">통계표</th>
+                <th>분류차원 1</th>
+                <th>분류차원 2</th>
+                <th>세부항목</th>
+                <th class="text-center">연도/시점</th>
+                <th class="text-center">구분</th>
+                <th class="text-right">수치값</th>
+                <th class="text-center">단위</th>
+                <th>비고/지표유형</th>
+              </tr>
+            </thead>
+            <tbody id="dbTableBody">
+              <!-- Rendered via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>2026 노동시장 고용동향 및 비정규직 노동실태 인터랙티브 대시보드 | 데이터 출처: 통계청 국가데이터처 (2026. 10. 21. 공표 보도자료 통계표)</p>
+    <p style="margin-top:4px; color:#94a3b8;">생성 일자: 2026-11-20 | 제작 지원: Google Antigravity Agent</p>
+  </footer>
+
+  <!-- Application Logic Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
